@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :redirect_to_login_if_not_signed_in
+  # before_filter :redirect_to_login_if_not_signed_in
 
   def new
     @user = User.new
