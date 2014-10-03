@@ -1,0 +1,33 @@
+<h1>Album: <%= @album.name %>'s stat</h1>
+
+<table border="1" >
+  <tr>belongs to the band: <strong><%= @album.band.name %></strong></tr>
+  <br>
+  <tr><td>tracks</td></tr>
+  <% if @album.tracks.empty? %>
+    <tr><td>no track</td></tr>
+  <% end  %>
+
+  <% @album.tracks.each do |track| %>
+    <tr><td>
+      <a href="<%= track_url(track) %>"><%= track.name %></a></td>
+    </tr>
+  <% end %>
+
+  <br>
+
+</table>
+
+<br>
+<td align="center"><%= link_to "create new track", new_track_url(album_id: @album.id) %></td>
+<br>
+<td><%= link_to "edit album", edit_album_url(@album), method: :get %></td>
+<br>
+<br>
+<td><%= button_to "delete album", album_url(@album), method: :delete %></td>
+
+<br>
+<td><%= link_to "back to album index page", band_url(@album.band) %></td>
+
+
+

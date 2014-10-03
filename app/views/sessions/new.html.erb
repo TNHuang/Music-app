@@ -1,0 +1,21 @@
+<h1>Log in</h1>
+
+<form action="<%= session_url  %>" method="POST" >
+
+  <%= form_validation %>
+
+  <label>email:
+  <input type="text" name="user[email]" value="<%= @user.email %>">
+  <label>
+
+  <br>
+  <label>password:
+  <input type="password" name="user[password]">
+  <label>
+
+  <br>
+  <input type="submit" value="Log In">
+
+</form>
+<br>
+<a href="<%= new_user_url %>">Create new account</a>

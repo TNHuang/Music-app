@@ -1,0 +1,18 @@
+<% has_album = @album_name.nil? ? "" : " for album: #{@album_name}"%>
+
+<h3>Create new track<%= has_album %></h3>
+<% unless @album_name.nil?%>
+ <li><%= @album_name %> has the following tracks:</li>
+ <% if @album_object.tracks.empty? %>
+   <li>no tracks</li>
+ <% else %>
+   <% @album_object.tracks.each do |track| %>
+     <li><%= track.name %></li>
+   <% end %>
+ <% end%>
+
+<% end %>
+
+<%= render "tracks/form_track", track: @track %>
+
+

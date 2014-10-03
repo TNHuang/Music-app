@@ -1,0 +1,43 @@
+<% action_url = @album.persisted? ? album_url(@album) : albums_url %>
+
+<% form_method = @album.persisted? ? "PATCH" : "POST" %>
+<% submit_text = @album.persisted? ? "Update!" : "Create new album!" %>
+
+
+<form action="<%= action_url %>" method="POST">
+  <input type="hidden" name="_method" value="<%= form_method %>">
+  <%= form_validation %>
+
+
+    <label for="name">Name: </label>
+      <input type="text" id="name"
+            name="album[name]" value="<%= @album.name %>" >
+
+    <br>
+     <label for="the band">band</label>
+
+      <select id="the band" name="album[band_id]">
+        <% Band.all.each do |band| %>
+          <option value="<%= band.id %>"
+            <%= "selected" if band.id == @album.band_id %>
+            ><%= band.name %></option>
+        <% end %>
+
+      </select>
+
+      <br>
+
+     <label for="los">live or studio?</label>
+
+      <select id="los" name="album[live_or_studio]">
+        <% ["LIVE", "STUDIO"].each do |opt| %>
+          <option value="<%= opt %>"
+            <%= "selected" if @album.live_or_studio == opt %>
+            ><%= opt %></option>
+        <% end %>
+      </select>
+      <input type="submit" value="<%= submit_text %>">
+</form>
+
+<br>
+<a href="<%=band_url(Band.find(@album.band_id))%>" >back to band page</a>

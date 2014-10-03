@@ -1,0 +1,31 @@
+<h1><%= @band.name %>'s stat</h1>
+
+<table border="1">
+  <tr><td><label>Albums</label></td></tr>
+  <% if @band.albums.empty? %>
+    <tr><td>no album</td></tr>
+  <% end  %>
+
+  <% @band.albums.each do |album| %>
+    <tr>
+      <td><a href="<%= album_url(album) %>"><%= album.name %></a></td>
+    </tr>
+  <% end %>
+
+  <br>
+
+</table>
+
+<br>
+<%= link_to "edit band", edit_band_url(@band), method: :get%>
+
+<br>
+<%= link_to "create new ablum", new_album_url(band_id: @band.id) %>
+
+<br>
+<%= link_to "back to band index page", bands_url %>
+<br>
+<br>
+<%= button_to "delete band", band_url(@band), method: :delete %>
+
+

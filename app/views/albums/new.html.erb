@@ -1,0 +1,17 @@
+<% has_band = @band_name.nil? ? "" : " for band: #{@band_name}"%>
+
+<h3>Create new album<%= has_band %></h3>
+<% unless @band_name.nil?%>
+ <li><%= @band_name %> has the following albums:</li>
+ <% if @band_object.albums.empty? %>
+   <li>no albums</li>
+ <% else %>
+   <% @band_object.albums.each do |ablum| %>
+     <li><%= ablum.name %></li>
+   <% end %>
+ <% end%>
+<% end %>
+
+<%= render "albums/form_album", album: @album %>
+
+

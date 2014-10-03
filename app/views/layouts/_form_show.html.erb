@@ -1,0 +1,24 @@
+<%= action_url = @item.persisted? ? "/#{item.class.downcase}s/#{@item.id}" : "/#{item.class.downcase}s/new" %>
+
+<%= form_method = @item.persisted? ? "PATCH" : "POST" %>
+
+<%= submit_text = @item.persisted? ? "update #{@item.class.downcase}" : "create #{@item.class.downcase}" %>
+
+<form action="<%= action_url %>" %>>
+  <input type="hidden" name="_method" value="<%= form_method %>">
+  <%= form_validation %>
+
+
+  <%= @item.children.each do |child| %>
+    <li>
+      <a href=child_url(@child) ></a>
+    </li>
+  <%= end %>
+
+
+
+<!-- do not use this yet! -->
+</form>
+
+<!-- go back to index
+return to send you back to current view -->
